@@ -1,0 +1,42 @@
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: matching_app_development
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    container_name: match_db
+    networks:
+      - app-network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/myapp
+      - bundle-data:/usr/local/bundle
+    environment:
+      TZ: Asia/Tokyo
+      RAILS_ENV: development
+      RAILS_MAX_THREADS: 5
+    ports:
+      - "3001:3000"
+    depends_on:
+      - db
+    container_name: match_api
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+  bundle-data:
