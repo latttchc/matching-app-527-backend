@@ -26,7 +26,7 @@ services:
       RAILS_ENV: development
       RAILS_MAX_THREADS: 5
     ports:
-      - "3001:3000"
+      - "3001:3000" #
     depends_on:
       - db
     container_name: match_api
