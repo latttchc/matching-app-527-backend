@@ -113,69 +113,18 @@ yaml
 ```bash
 git clone https://github.com/your-user/matching-app-backend.git
 cd matching-app-backend
+```
+
 2. DockerビルドとDBセットアップ
-bash
-コピーする
-編集する
+```bash
 docker compose build
 docker compose run api rails db:create
 docker compose run api rails db:migrate
 docker compose up
-3. 動作確認
-bash
-コピーする
-編集する
-curl http://localhost:3001/up
-# => "Rails app is running"
-📝 使用例
-ユーザー登録
-bash
-コピーする
-編集する
-curl -F "email=test@example.com" \
-     -F "password=password" \
-     -F "password_confirmation=password" \
-     -F "name=テストユーザー" \
-     -F "gender=0" \
-     -F "birthday=2000-01-01" \
-     -F "prefecture=13" \
-     -F "profile=よろしくお願いします" \
-     -F "image=@profile.jpg" \
-     http://localhost:3001/api/v1/auth
-マッチング候補取得
-bash
-コピーする
-編集する
-curl -H "Authorization: Bearer <token>" \
-     http://localhost:3001/api/v1/users
-いいね送信
-bash
-コピーする
-編集する
-curl -X POST \
-     -H "Authorization: Bearer <token>" \
-     -F "to_user_id=2" \
-     http://localhost:3001/api/v1/likes
-🔧 開発コマンド
-ログ確認
-bash
-コピーする
-編集する
-docker compose logs api
-Railsコンソール
-bash
-コピーする
-編集する
-docker compose run api rails c
-テスト実行（任意で実装）
-bash
-コピーする
-編集する
-docker compose run api rails test
-📁 プロジェクト構成
-bash
-コピーする
-編集する
+```
+
+
+## 🔧 開発構成
 ├── app/
 │   ├── controllers/api/v1/
 │   │   ├── auth/
@@ -194,7 +143,8 @@ bash
 │   ├── routes.rb
 │   └── initializers/carrierwave.rb
 └── db/migrate/
-📄 ライセンス
+
+## 📄 ライセンス
 This project is licensed under the MIT License.
 
 マッチングアプリの恋が始まる場所 💕
