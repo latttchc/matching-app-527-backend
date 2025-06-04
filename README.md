@@ -125,6 +125,7 @@ docker compose up
 
 
 ## 🔧 開発構成
+```
 ├── app/
 │   ├── controllers/api/v1/
 │   │   ├── auth/
@@ -143,6 +144,7 @@ docker compose up
 │   ├── routes.rb
 │   └── initializers/carrierwave.rb
 └── db/migrate/
+```
 
 ## 📄 ライセンス
 This project is licensed under the MIT License.
